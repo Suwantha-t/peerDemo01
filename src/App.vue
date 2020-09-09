@@ -3,7 +3,9 @@
     <div id="nav">
       <router-link to="/">Server</router-link> |
       <router-link to="/client">Client</router-link> | 
-      <router-link to="/manual">Manual</router-link>
+      <router-link to="/manual">Manual</router-link> |
+      <router-link to="/roomserver">RoomServer</router-link> |
+      <router-link to="/room">Room</router-link> |
     </div>
     <router-view/>
   </div>

@@ -19,7 +19,18 @@ Vue.use(VueRouter)
     path: '/manual',
     name: 'Manual',
     component: () => import(/* webpackChunkName: "about" */ '../views/Manual.vue')
+  },
+  {
+    path: '/room',
+    name: 'Room',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Room.vue')
+  },
+  {
+    path: '/roomserver',
+    name: 'RoomServer',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RoomServer.vue')
   }
+
 ]
 
 const router = new VueRouter({
