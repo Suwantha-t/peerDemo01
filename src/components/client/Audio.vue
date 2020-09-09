@@ -54,29 +54,12 @@ export default {
 
       this.peer.on("call", this.peerCall);
     },
-    async checkForVideoAudioAccess (){
-         try {
-             const cameraResult = await navigator.permissions.query({ name: 'camera' });
-          // The state property may be 'denied', 'prompt' and 'granted'
-          this.isCameraAccessGranted = cameraResult.state !== 'denied';
-
-          const microphoneResult = await navigator.permissions.query({ name: 'microphone' });
-          this.isMicrophoneAccessGranted = microphoneResult.state !== 'denied';
-        } catch(e) {
-          console.error('An error occurred while checking the site permissions', e);
-        }
-
-        return true;
-        
-
-     },
-    
 
     async peerCall(call) {
-        await this.checkForVideoAudioAccess()
+        // await this.checkForVideoAudioAccess()
       let stream = await navigator.mediaDevices.getUserMedia({
-        video: !this.isCameraAccessGranted,
-        audio: !this.isMicrophoneAccessGranted,
+        video: true,
+        audio: true,
       });
       call.answer(stream);
       call.on("stream", (remoteStream) => {

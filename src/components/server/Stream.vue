@@ -36,12 +36,13 @@ export default {
         console.log("Ask your friend to join using your peer ID: " + peerId);
       });
       this.peer.on("error", function (err) {
-        alert("" + err);
+        console.log("error" + err);
       });
     },
 
     connectPeer() {
       let conn = this.peer.connect(this.peerConnectTo);
+      
       // on open will be launch when you successfully connect to PeerServer
       conn.on("open", function () {
         // here you have conn.id
@@ -53,7 +54,6 @@ export default {
           console.log("server receive : ", data);
         });
       });
-      // this.peer.on("call", this.peerCall);
     },
 
     async startSteam() {

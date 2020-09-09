@@ -61,6 +61,8 @@ export default {
     connectPeer() {
       this.initPeer();
       let conn = this.peer.connect(this.peerConnectTo);
+      console.log('conn',conn)
+
       // on open will be launch when you successfully connect to PeerServer
       conn.on("open", function () {
         // here you have conn.id
@@ -73,11 +75,14 @@ export default {
         });
       });
 
-      this.peer.on("call", this.peerCall);
+      this.peer.on("call",  (call) =>  {
+            this.peerCall(call)
+      })
     },
     
 
     async peerCall(call) {
+      
       let audioTrack = createEmptyAudioTrack();
       let videoTrack = createEmptyVideoTrack({ width: 640, height: 480 });
       let stream = new MediaStream([audioTrack, videoTrack]);
@@ -86,6 +91,7 @@ export default {
       // });
       call.answer(stream);
       call.on("stream", (remoteStream) => {
+        console.log(remoteStream,"vioe");
         let video = this.$refs["video"];
         video.srcObject = remoteStream;
         video.play();
